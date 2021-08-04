@@ -34,7 +34,6 @@ export default {
     data() {
         return{
             quantity:1,
-            dish:{},
             fields: [
                 {
                     key: 'productName',
@@ -71,12 +70,13 @@ export default {
         },
         addToCart(row){
             console.log(row)
-            this.dish.id = row.item.id
-            this.dish.price = row.item.price
-            this.dish.quantity = this.quantity
-            this.dish.productName = row.item.productName
-            console.log(this.dish)
-            this.addToCartVX(this.dish)
+            let dish = {}
+            dish.id = row.item.id
+            dish.price = row.item.price
+            dish.quantity = this.quantity
+            dish.productName = row.item.productName
+            console.log(dish)
+            this.addToCartVX(dish)
             row.toggleDetails()
         }
 

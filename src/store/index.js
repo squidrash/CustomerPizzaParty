@@ -16,8 +16,7 @@ export default new Vuex.Store({
   mutations: {
     addToCartVX(state, dish) {
       state.cart.push(dish)
-      console.log(state.cart[1])
-      console.log(state.cart[0])
+      console.log(state.cart)
     }
   },
   modules: {
