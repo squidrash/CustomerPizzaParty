@@ -4,10 +4,12 @@
       <router-link to="/">Меню</router-link> |
       <router-link to="/profile">Профиль</router-link> |
       <router-link to="/cart">Корзина</router-link>
-
     </div>
-<NavBar/>
+
+    <NavBar/>
+
     <router-view/>
+    
   </div>
 </template>
 <script>

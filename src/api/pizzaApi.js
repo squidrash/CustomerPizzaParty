@@ -7,5 +7,11 @@ export default {
             return await axios
                 .get(url + "menu/fullmenu/")
         },
+    },
+    order: {
+        async createOrder(order) {
+            return await axios
+                .post(url + "order/create/", order)
+        }
     }
 }

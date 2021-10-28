@@ -11,12 +11,25 @@ export default new Vuex.Store({
   actions: {
     addToCartVX({ commit }, dish) {
       commit('addToCartVX', dish)
+    },
+    removeDishVX({ commit }, id) {
+      commit('removeDishVX', id)
+    },
+    emptyCartVX({ commit }) {
+      commit('emptyCartVX')
     }
   },
   mutations: {
     addToCartVX(state, dish) {
       state.cart.push(dish)
       console.log(state.cart)
+    },
+    removeDishVX(state, id) {
+      state.cart.splice(id, 1)
+      console.log(state.cart)
+    },
+    emptyCartVX(state) {
+      state.cart = []
     }
   },
   modules: {
