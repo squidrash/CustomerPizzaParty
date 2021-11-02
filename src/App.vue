@@ -2,14 +2,14 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Меню</router-link> |
-      <router-link to="/profile">Профиль</router-link> |
+      <router-link to="/profile/personal">Профиль</router-link> |
       <router-link to="/cart">Корзина</router-link>
     </div>
 
     <NavBar/>
 
     <router-view/>
-    
+
   </div>
 </template>
 <script>
@@ -18,8 +18,7 @@ export default{
   components:{
     NavBar 
   }
-}
-
+} 
 </script>
 
 <style>

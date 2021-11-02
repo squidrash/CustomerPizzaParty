@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import MenuModule from './MenuModule'
+import CustomerModule from './CustomerModule'
 
 Vue.use(Vuex)
 
@@ -33,6 +34,7 @@ export default new Vuex.Store({
     }
   },
   modules: {
-    menuM: MenuModule
+    menuM: MenuModule,
+    customerM: CustomerModule
   }
 })

@@ -1,0 +1,15 @@
+.sidenav {
+    width: 150px;
+    float: left;
+    background: #eee;
+}
+.main {
+    margin-left: 170px; 
+    font-size: 20px;
+    background: #eee;
+}
+.table-size {
+    position: fixed;
+    margin-left: 25%;
+    width: 60%;
+}

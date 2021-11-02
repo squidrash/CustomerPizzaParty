@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 import Menu from '../views/Menu.vue'
 import Cart from '../views/Cart.vue'
 import UserProfile from '../views/UserProfile.vue'
+import CustomerInfo from '@/components/CustomerInfo.vue'
+import CustomerOrders from '@/components/CustomerOrders.vue'
+import DeliveryAddresses from '@/components/DeliveryAddresses.vue'
 
 Vue.use(VueRouter)
 
@@ -20,7 +23,25 @@ const routes = [
   {
     path: '/profile',
     name: 'UserProfile',
-    component: UserProfile
+    component: UserProfile,
+    children: [
+      {
+        path: 'personal',
+        name: 'CustomerInfo',
+        component: CustomerInfo
+      },
+      {
+        path: 'orders',
+        name: 'CustomerOrders',
+        component: CustomerOrders
+      },
+      {
+        path: 'addresses',
+        name: 'DeliveryAddresses',
+        component: DeliveryAddresses
+      }
+
+    ]
   }
 ]
 

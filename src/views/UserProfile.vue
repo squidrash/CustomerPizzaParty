@@ -1,11 +1,27 @@
 <template>
-<div>
-    фамилия имя отчество ты ...луша
-</div>
+    <div id='nav'>
+        <SideBar/>
+        <router-view/>
+    </div>
 </template>
+
 <script>
-export default {
-    name:'UserProfile'
     
-}
+    import SideBar from '@/components/SideBar.vue'
+    import {mapActions } from 'vuex'
+    
+    export default {
+        name:'UserProfile',
+        components: {
+            SideBar
+        },
+        methods:{
+        ...mapActions('customerM', [
+        'getCustomer'
+        ])
+        },
+        mounted() {
+            this.getCustomer(1)
+        }
+    }
 </script>

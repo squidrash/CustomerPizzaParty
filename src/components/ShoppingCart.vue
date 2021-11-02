@@ -1,10 +1,10 @@
 <template>
-    <div v-if="items.length !== 0">
+    <div v-if="items.length !== 0" class="table-size">
         <b-button size="sm" @click="submitEmptyCart"  variant='' class="mr-2">
             Очистить корзину
         </b-button>
 
-        <b-table :fixed="true" small hover :items='items' :fields='fields'>
+        <b-table fixed small hover :items='items' :fields='fields'>
            
             <template #cell(price)="row">
                 {{row.item.quantity * row.item.price}} ₽
@@ -20,9 +20,6 @@
         </b-table>
         <b-button size="sm" variant='success' class="mr-2" @click="submitCreateOrder">
             Оформить Заказ {{totalSum}} ₽
-        </b-button>
-        <b-button size="sm"  class="mr-2" @click="test">
-            Тест
         </b-button>
         <ModalConfirm :modalTitle="modalTitle" @submitAction='onSubmit'/>
 

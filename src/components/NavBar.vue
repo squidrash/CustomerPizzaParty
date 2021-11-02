@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div >
     <b-navbar toggleable="lg" type="dark" variant="success">
         <b-navbar-brand>PizzaParty</b-navbar-brand>
 
@@ -23,9 +23,9 @@
                 <b-avatar variant="primary"></b-avatar>
             </em>
           </template>
-          <b-dropdown-item><router-link to="/profile">Личные данные</router-link></b-dropdown-item>
+          <b-dropdown-item><router-link to="/profile/personal">Личные данные</router-link></b-dropdown-item>
           <b-dropdown-item>Адреса</b-dropdown-item>
-          <b-dropdown-item>Заказы</b-dropdown-item>
+          <b-dropdown-item><router-link to="/profile/orders">Заказы</router-link></b-dropdown-item>
           <b-dropdown-item>Выход</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>

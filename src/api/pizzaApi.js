@@ -13,5 +13,15 @@ export default {
             return await axios
                 .post(url + "order/create/", order)
         }
+    },
+    customer: {
+        async getCustomer(id) {
+            return await axios
+                .get(url + `customer/getOne/${id}`)
+        },
+        async getCustomerWithInfo(id) {
+            return await axios
+                .get(url + `customer/getOneWithInfo/${id}`)
+        }
     }
 }

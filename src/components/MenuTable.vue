@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <b-table small hover :items='items' :fields='fields'>
+    <div class="table-size">
+        <b-table fixed small hover :items='items' :fields='fields' >
             
             <template #cell(more)="row">
                 <b-button size="sm" @click="showDetails(row)" class="mr-2">
