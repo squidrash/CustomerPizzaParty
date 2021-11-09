@@ -1,13 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import MenuModule from './MenuModule'
-import CustomerModule from './CustomerModule'
+//import MenuModule from './MenuModule'
+//import CustomerModule from './CustomerModule'
+import pizzaApi from '@/api/pizzaApi'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    cart: []
+    cart: [],
+    menu: [],
+    customer: {}
   },
   actions: {
     addToCartVX({ commit }, dish) {
@@ -18,6 +21,16 @@ export default new Vuex.Store({
     },
     emptyCartVX({ commit }) {
       commit('emptyCartVX')
+    },
+
+    async getMenu({ commit }) {
+      const getM = await pizzaApi.menu.getMenu();
+      commit('getMenu', getM);
+    },
+
+    async getCustomer({ commit }, id) {
+      const getC = await pizzaApi.customer.getCustomerWithInfo(id);
+      commit('getCustomer', getC);
     }
   },
   mutations: {
@@ -31,10 +44,17 @@ export default new Vuex.Store({
     },
     emptyCartVX(state) {
       state.cart = []
+    },
+
+    getMenu(state, payload) {
+      state.menu = payload.data;
+    },
+
+    getCustomer(state, payload) {
+      state.customer = payload.data;
     }
+
   },
   modules: {
-    menuM: MenuModule,
-    customerM: CustomerModule
   }
 })

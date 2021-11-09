@@ -21,7 +21,7 @@
         <b-button size="sm" variant='success' class="mr-2" @click="submitCreateOrder">
             Оформить Заказ {{totalSum}} ₽
         </b-button>
-        <ModalConfirm :modalTitle="modalTitle" @submitAction='onSubmit'/>
+        <ModalConfirm :modalTitle="modalTitle" @submit-action='onSubmit'/>
 
     </div>
     <div v-else>

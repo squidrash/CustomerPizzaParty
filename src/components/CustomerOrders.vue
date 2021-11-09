@@ -1,6 +1,19 @@
 <template>
     <div class="table-size">
         <b-table fixed small hover :items='customer.orders' :fields='fields'>
+            <template #cell(address)="row">
+                <template v-if="row.item.address === undefined">
+                    Нет адресса
+                </template>
+                <template v-else>
+                    г {{row.item.address.city}}, ул {{row.item.address.street}},
+                    д {{row.item.address.numberOfBuild}}, 
+                    <template v-if="row.item.address.numberOfEntrance !== undefined">
+                        подъезд {{row.item.address.numberOfEntrance}}, кв {{row.item.address.apartment}}
+                    </template>
+                </template>
+            </template>
+
             <template #cell(dishes)="row">
                 <template v-if="row.item.dishes.length === 0">
                     Блюдо(а) было(и) удалено(ы)
@@ -75,7 +88,7 @@ export default {
         }
     },
     computed: {
-        ...mapState('customerM', {
+        ...mapState( {
         customer: 'customer'
         })
         

@@ -16,7 +16,7 @@
             SideBar
         },
         methods:{
-        ...mapActions('customerM', [
+        ...mapActions([
         'getCustomer'
         ])
         },

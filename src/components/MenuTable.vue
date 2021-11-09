@@ -13,11 +13,9 @@
                     <b-row class="mb-2">
                         <b-col sm="3" class="text-sm-right"><b>Количество</b>
                         </b-col>
-                        <b-col><b-form-spinbutton v-model="quantity" class="w-25" size='sm' wrap min="1" max="10" placeholder="--"></b-form-spinbutton>
+                        <b-col><b-form-spinbutton v-model="quantity" class="w-50" size='sm' wrap min="1" max="10" placeholder="--"></b-form-spinbutton>
                         </b-col>
-                    </b-row>
-                    <b-row class="mb-2">
-                        <b-col sm="3" class="text-sm-right"><b-button size="sm" variant="success" @click="addToCart(row)"> Добавить <b-icon icon="cart-plus" aria-hidden="true"> </b-icon></b-button> 
+                        <b-col sm="3"><b-button size="sm" variant="success" @click="addToCart(row)"> Добавить <b-icon icon="cart-plus" aria-hidden="true"></b-icon></b-button> 
                         </b-col>
                     </b-row>
                 </b-card>
@@ -53,16 +51,14 @@ export default {
         }
     },
     computed:{
-    ...mapState('menuM', {
+    ...mapState( {
         items: 'menu'
         })
     },
     methods: {
-        ...mapActions('menuM', [
-        'getMenu'
-        ]),
         ...mapActions([
-        'addToCartVX'
+        'addToCartVX',
+        'getMenu'
         ]),
         showDetails(row){
             this.quantity = 1

@@ -15,7 +15,7 @@
     export default {
         name: 'CustomerInfo',
         computed:{
-            ...mapState('customerM', {
+            ...mapState( {
                 user: 'customer'
             })
         }

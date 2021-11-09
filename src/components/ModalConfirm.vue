@@ -16,7 +16,8 @@
     props:['modalTitle'],
     methods: {
       submitAction(){
-        this.$emit('submitAction')
+        this.$emit('submit-action')
+        this.$bvModal.hide('modal-confirm')
       }
     }
   }
