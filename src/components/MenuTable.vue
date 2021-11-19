@@ -1,5 +1,5 @@
 <template>
-    <div class="table-size">
+    <div class="table-size-l">
         <b-table fixed small hover :items='items' :fields='fields' >
             
             <template #cell(more)="row">
@@ -21,14 +21,30 @@
                 </b-card>
             </template>
         </b-table>
+        
+        <div class="block">
+            <div v-for="item in items" :key="item.id">
+                <dish-card :dish="item" @add-to-cart="addToCartFrom"/>
+            </div>
+        </div>
+
+        <div>
+            <add-to-cart-form :selectDish="currentDish" @add-to-cart="addToCart2"/>
+        </div>
     </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import DishCard from '@/components/DishCard.vue'
+import AddToCartForm from '@/components/AddToCartForm.vue'
 
 export default {
     name:'MenuTable',
+    components:{
+        DishCard,
+        AddToCartForm
+    },
     data() {
         return{
             quantity:1,
@@ -47,7 +63,8 @@ export default {
                     key: 'more',
                     label: ''
                 },
-            ]
+            ],
+            currentDish:{}
         }
     },
     computed:{
@@ -74,6 +91,14 @@ export default {
             console.log(dish)
             this.addToCartVX(dish)
             row.toggleDetails()
+        },
+        addToCart2(dish){
+            console.log(dish)
+            this.addToCartVX(dish)
+        },
+        addToCartFrom(dish){
+            this.currentDish = dish
+            this.$bvModal.show('add-to-cart-form')
         }
 
         

@@ -7,13 +7,14 @@
 
      <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item><router-link to="/">Меню</router-link></b-nav-item>
+        <b-nav-item><router-link to="/menu">Меню</router-link></b-nav-item>
       </b-navbar-nav>
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <b-nav-item>
           <router-link to="/cart">
-              <b-icon icon="basket"></b-icon> Корзина
+              <b-icon icon="basket"></b-icon> 
+              Корзина
           </router-link>
         </b-nav-item>
         <b-nav-item-dropdown right>
@@ -24,7 +25,7 @@
             </em>
           </template>
           <b-dropdown-item><router-link to="/profile/personal">Личные данные</router-link></b-dropdown-item>
-          <b-dropdown-item>Адреса</b-dropdown-item>
+          <b-dropdown-item><router-link to="/profile/addresses">Адреса</router-link></b-dropdown-item>
           <b-dropdown-item><router-link to="/profile/orders">Заказы</router-link></b-dropdown-item>
           <b-dropdown-item>Выход</b-dropdown-item>
         </b-nav-item-dropdown>

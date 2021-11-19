@@ -1,6 +1,6 @@
 <template>
-    <div class="table-size">
-        <b-table fixed small hover :items='customer.addresses' :fields='fields'>
+    <div class="table-size-s">
+        <b-table small hover :items='customer.addresses' :fields='fields'>
             <template #cell(address)="row">
                 <template>
                     г {{row.item.city}}, ул {{row.item.street}},

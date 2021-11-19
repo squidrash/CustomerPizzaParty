@@ -8,8 +8,27 @@
     font-size: 20px;
     background: #eee;
 }
-.table-size {
-    position: fixed;
+.table-size-l {
     margin-left: 15%;
     width: 80%;
+}
+.table-size-s {
+    margin-left: 15%;
+    width: 65%;
+}
+
+.block {
+ display: flex;
+ justify-content: space-around;
+ flex-wrap: wrap;
+}
+.dish-card {
+    width: 250px;
+    height: 350px;
+    background: #007E3E; /* Цвет фона */
+    color: #fff; /* Цвет текста */
+    padding: 10px; /* Поля вокруг текста */
+    -moz-border-radius: 5px; /* Для Firefox 3 */
+    -webkit-border-radius: 5px; /* Для Safari 4 и Chrome */
+    border-radius: 5px; /* Для современных браузеров */
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class="table-size">
+    <div class="table-size-l">
         <b-table fixed small hover :items='customer.orders' :fields='fields'>
             <template #cell(address)="row">
                 <template v-if="row.item.address === undefined">

@@ -30,9 +30,10 @@
 </template>
 
 <script>
-    import { mapState, mapActions } from 'vuex'
-    import ModalConfirm from '@/components/ModalConfirm.vue'
+    import { mapState, mapActions } from 'vuex'    
     import pizzaApi from '@/api/pizzaApi'
+    
+    import ModalConfirm from '@/components/ModalConfirm.vue'
 export default {
     name: 'ShoppingCart',
     components: {
