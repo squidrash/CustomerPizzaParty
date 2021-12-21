@@ -17,18 +17,45 @@
     width: 65%;
 }
 
-.block {
- display: flex;
- justify-content: space-around;
- flex-wrap: wrap;
+.dishes-block {
+    background-color: chocolate;
+    margin: 10px;
+    display: flex;
+    justify-content: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 .dish-card {
-    width: 250px;
-    height: 350px;
+    width: 320px;
+    height: 420px;
     background: #007E3E; /* Цвет фона */
-    color: #fff; /* Цвет текста */
+    color: rgb(8, 8, 8); /* Цвет текста */
     padding: 10px; /* Поля вокруг текста */
     -moz-border-radius: 5px; /* Для Firefox 3 */
     -webkit-border-radius: 5px; /* Для Safari 4 и Chrome */
     border-radius: 5px; /* Для современных браузеров */
+    margin: 10px;
 }
+.special-offer-block {
+    background-color: bisque;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    max-height: 175px;
+    margin: 10px;
+}
+.special-offer-block::-webkit-scrollbar {
+    display: none;
+}
+.special-offer-card{
+    width: 240px;
+    height: 135px;
+    margin: 20px;
+    background: #007E3E;
+    border-radius: 10px;
+    border: 1px solid black;
+    font-size: 14px;
+}
+
+
+

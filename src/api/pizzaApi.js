@@ -8,6 +8,12 @@ export default {
                 .get(url + "menu/fullmenu/")
         },
     },
+    specialOffer: {
+        async getOffers() {
+            return await axios
+                .get(url + "specialOffer/all")
+        }
+    },
     order: {
         async createOrder(order) {
             return await axios

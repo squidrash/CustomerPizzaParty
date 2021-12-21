@@ -10,6 +10,7 @@ export default new Vuex.Store({
   state: {
     cart: [],
     menu: [],
+    specialOffers: [],
     customer: {}
   },
   actions: {
@@ -26,6 +27,10 @@ export default new Vuex.Store({
     async getMenu({ commit }) {
       const getM = await pizzaApi.menu.getMenu();
       commit('getMenu', getM);
+    },
+    async getOffers({ commit }) {
+      const getO = await pizzaApi.specialOffer.getOffers();
+      commit('getOffers', getO);
     },
 
     async getCustomer({ commit }, id) {
@@ -48,6 +53,9 @@ export default new Vuex.Store({
 
     getMenu(state, payload) {
       state.menu = payload.data;
+    },
+    getOffers(state, payload) {
+      state.specialOffers = payload.data;
     },
 
     getCustomer(state, payload) {

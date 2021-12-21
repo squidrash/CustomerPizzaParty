@@ -1,6 +1,7 @@
 <template>
+<div>
     <div class="table-size-l">
-        <b-table fixed small hover :items='items' :fields='fields' >
+        <b-table fixed small hover :items='dishes' :fields='fields' >
             
             <template #cell(more)="row">
                 <b-button size="sm" @click="showDetails(row)" class="mr-2">
@@ -21,10 +22,23 @@
                 </b-card>
             </template>
         </b-table>
+    </div>
         
-        <div class="block">
-            <div v-for="item in items" :key="item.id">
-                <dish-card :dish="item" @add-to-cart="addToCartFrom"/>
+        <div class="special-offer-block">
+            <div 
+            v-for="offer in offers"
+            :key="offer.id"
+            >
+                <special-offer-card :specialOffer="offer"/>
+            </div>
+        </div>
+
+        <div class="dishes-block">
+            <div 
+            v-for="dish in dishes" 
+            :key="dish.id"
+            >
+                <dish-card :dish="dish" @add-to-cart="addToCartFrom"/>
             </div>
         </div>
 
@@ -37,13 +51,15 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import DishCard from '@/components/DishCard.vue'
+import SpecialOfferCard from '@/components/SpecialOfferCard.vue'
 import AddToCartForm from '@/components/AddToCartForm.vue'
 
 export default {
     name:'MenuTable',
     components:{
         DishCard,
-        AddToCartForm
+        AddToCartForm,
+        SpecialOfferCard
     },
     data() {
         return{
@@ -69,13 +85,15 @@ export default {
     },
     computed:{
     ...mapState( {
-        items: 'menu'
+        dishes: 'menu',
+        offers: 'specialOffers'
         })
     },
     methods: {
         ...mapActions([
         'addToCartVX',
-        'getMenu'
+        'getMenu',
+        'getOffers'
         ]),
         showDetails(row){
             this.quantity = 1
@@ -88,7 +106,6 @@ export default {
             dish.price = row.item.price
             dish.quantity = this.quantity
             dish.productName = row.item.productName
-            console.log(dish)
             this.addToCartVX(dish)
             row.toggleDetails()
         },
@@ -105,6 +122,7 @@ export default {
     },
     mounted(){
         this.getMenu()
+        this.getOffers()
     }
 }
 </script>
