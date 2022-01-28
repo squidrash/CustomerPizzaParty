@@ -8,6 +8,12 @@ export default {
                 .get(url + "menu/fullmenu/")
         },
     },
+    dishCategories: {
+        async getCategories() {
+            return await axios
+                .get(url + "dishcategory/getCategories")
+        }
+    },
     specialOffer: {
         async getOffers() {
             return await axios

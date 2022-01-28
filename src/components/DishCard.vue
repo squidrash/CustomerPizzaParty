@@ -1,5 +1,8 @@
 <template>
-<div v-b-hover="handleHover">
+<div 
+  v-b-hover="handleHover"
+  class="inline-block"
+  >
   <div class="dish-card">
     <b-card
       :title="dish.productName"

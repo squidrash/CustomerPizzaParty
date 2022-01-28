@@ -4,7 +4,10 @@ import Menu from '../views/Menu.vue'
 import Cart from '../views/Cart.vue'
 import UserProfile from '../views/UserProfile.vue'
 import CustomerInfo from '@/components/CustomerInfo.vue'
-import CustomerOrders from '@/components/CustomerOrders.vue'
+// import CustomerOrders from '@/components/CustomerOrders.vue'
+import CustomerOrders1 from '@/components/CustomerOrders1.vue'
+
+// import OrderCard from '@/components/OrderCard.vue'
 import DeliveryAddresses from '@/components/DeliveryAddresses.vue'
 
 Vue.use(VueRouter)
@@ -30,11 +33,21 @@ const routes = [
         name: 'CustomerInfo',
         component: CustomerInfo
       },
+      // {
+      //   path: 'orders',
+      //   name: 'CustomerOrders',
+      //   component: CustomerOrders
+      // },
       {
         path: 'orders',
-        name: 'CustomerOrders',
-        component: CustomerOrders
+        name: 'CustomerOrders1',
+        component: CustomerOrders1
       },
+      // {
+      //   path: 'orders',
+      //   name: 'OrderCard',
+      //   component: OrderCard
+      // },
       {
         path: 'addresses',
         name: 'DeliveryAddresses',
@@ -44,6 +57,8 @@ const routes = [
     ]
   }
 ]
+
+
 
 const router = new VueRouter({
   routes

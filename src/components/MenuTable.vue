@@ -9,18 +9,47 @@
         </div>
     </div>
 
-    <div class="dishes-block">
-        <div 
-        v-for="dish in dishes" 
-        :key="dish.id"
+    <div class="categories-block">
+        <b-nav>
+        <b-nav-item 
+            v-for="c in dishes"
+            :key="c.categoryId"
+            v-scroll-to="`#${c.categoryName}`"
+            >
+            {{c.categoryName}}
+            
+        </b-nav-item>
+        </b-nav>
+    </div>
+
+    <div 
+        class="dishes-block"
+        v-for="category in dishes"
+        :key="category.categoryId"
         >
-            <dish-card :dish="dish" @add-to-cart="addToCartForm"/>
-        </div>
+
+        <h1 :id="category.categoryName"
+            style="width: 100%;
+                text-align:left;
+                margin-left: 10px;"
+        >
+        {{category.categoryName}}
+        </h1>
+            
+        <dish-card 
+            v-for="dish in category.dishes" 
+            :key="dish.id"
+            :dish="dish" 
+            @add-to-cart="addToCartForm"
+        />
+
     </div>
 
     <div>
         <add-to-cart-form :selectDish="currentDish" @add-to-cart="addToCart"/>
     </div>
+
+    
 </div>
 </template>
 
@@ -40,20 +69,25 @@ export default {
     data() {
         return{
             quantity:1,
-            currentDish:{}
+            currentDish:{},
         }
     },
     computed:{
     ...mapState( {
         dishes: 'menu',
+        categories: 'categories',
         offers: 'specialOffers'
-        })
+        }),
+        category(){
+            return this.dishes.category
+        }
     },
     methods: {
         ...mapActions([
         'addToCartVX',
         'getMenu',
-        'getOffers'
+        'getOffers',
+        'getCategories'
         ]),
         addToCart(dish){
             console.log(dish)
@@ -63,12 +97,11 @@ export default {
             this.currentDish = dish
             this.$bvModal.show('add-to-cart-form')
         }
-
-        
     },
     mounted(){
         this.getMenu()
         this.getOffers()
+        //this.getCategories()
     }
 }
 </script>
