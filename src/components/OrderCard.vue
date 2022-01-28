@@ -22,18 +22,16 @@
     </div>
     
     <div class="order-card-dishes">
-        <table 
-            role="table"
-            >
+        <table>
         <tbody>    
             <tr 
                 role="row"
                 v-for="dish in order.dishes"
                 :key="dish.id"
                 >
-                <td role="cell" class="first-column">{{dish.productName}}</td>
-                <td role="cell" class="quantity-column">{{dish.quantity}}шт.</td> 
-                <td role="cell" class="price-column">{{dish.price * dish.quantity}}₽</td>
+                <td class="first-column">{{dish.productName}}</td>
+                <td class="quantity-column">{{dish.quantity}}шт.</td> 
+                <td class="price-column">{{dish.price * dish.quantity}}₽</td>
             </tr>
         </tbody>
         <tfoot>
@@ -46,7 +44,6 @@
                 <td class="price-column">{{order.totalSum}}₽</td>
             </tr>
         </tfoot>
-            
         </table>
 
     </div>
@@ -55,7 +52,6 @@
 </template>
 
 <script>
-//import {mapState} from 'vuex'
 export default {
     name:'OrderCard',
     props:['order'],
@@ -99,11 +95,6 @@ export default {
             
             return date.toLocaleString('ru',options);
         }
-    },
-    //computed: {
-    //    ...mapState( {
-    //    customer: 'customer'
-    //    })
-    //}
+    }
 }
 </script>
