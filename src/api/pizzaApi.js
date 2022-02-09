@@ -31,9 +31,6 @@ export default {
     },
   },
   order: {
-    // async createOrder(order) {
-    //   return await axios.post(url + "order/create/", order);
-    // },
     async createOrder(order) {
       return await axios.post(url + "order/create/", order);
     },
@@ -45,10 +42,6 @@ export default {
     async getCustomerWithInfo(id) {
       return await axios.get(url + `customer/getOneWithInfo/${id}`);
     },
-    // async createCustomerAddress(id, address) {
-    //     return await axios
-    //         .post(url + `customer/createConnection/?customerId=${id}`, address)
-    // },
     async createCustomerAddress(id, address) {
       return await axios
         .post(url + `customer/createConnection/?customerId=${id}`, address)

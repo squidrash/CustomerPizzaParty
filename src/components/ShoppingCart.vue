@@ -8,40 +8,6 @@
     >
       Очистить корзину
     </b-button>
-    <!-- <div>
-      <b-table fixed small hover :items="items" :fields="fields">
-        <template #cell(price)="row">
-          {{ row.item.quantity * row.item.price }} ₽
-        </template>
-        <template #cell(delete)="row">
-          <b-button
-            size="sm"
-            variant="danger"
-            class="mr-2"
-            @click="removeDish(row.index)"
-          >
-            Удалить
-          </b-button>
-        </template>
-        <template #cell(quantity)="row">
-          <b-form-spinbutton
-            style="width: 8rem"
-            size="sm"
-            v-model="row.item.quantity"
-            min="1"
-            max="10"
-          ></b-form-spinbutton>
-        </template>
-      </b-table>
-    </div> -->
-    <!-- <b-button
-      size="sm"
-      variant="success"
-      class="mr-2"
-      @click="submitCreateOrder"
-    >
-      Оформить Заказ {{ totalSum }} ₽
-    </b-button> -->
 
     <div class="cart_address">
       <AddressCard :addresses="customer.addresses" />
@@ -145,13 +111,9 @@ export default {
   },
   computed: {
     ...mapState({
-      //   items: "cart",
-      //   items: (state) => state.cartM.cart,
-      // promocode: "promocode",
       customer: "customer",
     }),
     ...mapState("cartM", {
-      //   items: (state) => state.cart,
       items: "cart",
     }),
     totalSum() {
@@ -161,13 +123,6 @@ export default {
       }
       return sum;
     },
-    // promocodeVariantButton() {
-    //   if (this.promocode.isActive === true) {
-    //     return "primary";
-    //   } else {
-    //     return "success";
-    //   }
-    // },
     promocodeVariantButton() {
       if (this.promocode.isActive === true) {
         return "primary";
@@ -231,20 +186,7 @@ export default {
       this.promocode.isActive = true;
       this.discountSum = result.data.discountSum;
       this.setPromocode(this.promocode.value);
-
-      // if (result.status !== 200) {
-      //   return result.data;
-      // }
-      // return result.data;
     },
-
-    // resetPromocode() {
-    //   if (this.discountSum !== 0) {
-    //     this.discountSum = 0;
-    //     this.promocode.isActive = false;
-    //     this.setPromocode("");
-    //   }
-    // },
     resetPromocode() {
       if (this.promocode.isActive === true) {
         this.discountSum = 0;

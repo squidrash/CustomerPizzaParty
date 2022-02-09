@@ -20,18 +20,6 @@
       <div class="dishes_list__column dishes_list__column_price">
         <div class="dishes_list__item">{{ dish.price * dish.quantity }} ₽</div>
       </div>
-      <!-- <div class="dishes_list__column dishes_list__column_remove">
-        <div class="dishes_list__item">
-          <b-button
-            @click="removeDish(dish.id)"
-            size="sm"
-            variant="danger"
-            class="mr-2"
-          >
-            <b-icon icon="x" />
-          </b-button>
-        </div>
-      </div> -->
     </div>
     <div class="dishes_list__row ">
       <div class="dishes_list__column dishes_list__column_total">
@@ -77,10 +65,6 @@ export default {
     },
   },
   methods: {
-    removeDish(id) {
-      // this.editDishes();
-      this.$emit("remove-dish", id);
-    },
     editDishes(dish) {
       console.log("тест изменения и удаления");
       this.$emit("edit-dishes");
@@ -88,7 +72,6 @@ export default {
         console.log("метод edit в компоненте dishesList");
         console.log("Id блюда");
         console.log(dish.id);
-        // this.removeDish(dish.id);
         this.$emit("remove-dish", dish.id);
       }
     },

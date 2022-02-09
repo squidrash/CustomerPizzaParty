@@ -76,12 +76,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions([
-      // 'addToCartVX',
-      "getMenu",
-      "getOffers",
-      "getCategories",
-    ]),
+    ...mapActions(["getMenu", "getOffers", "getCategories"]),
     // для модуля корзины
     ...mapActions("cartM", ["addToCartVX"]),
 

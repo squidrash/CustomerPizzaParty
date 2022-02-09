@@ -11,7 +11,6 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    // cart: [],
     menu: [],
     categories: [],
     specialOffers: [],
@@ -78,7 +77,6 @@ export default new Vuex.Store({
   modules: {
     cartM: CartModule,
   },
-  // plugins:[cartState]
   plugins: [
     createPersistedState({
       paths: ["selectedAddress", "promocode", "cartM.cart"],
