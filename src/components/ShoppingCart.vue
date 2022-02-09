@@ -1,121 +1,260 @@
 <template>
-    <div v-if="items.length !== 0" class="table-size">
-        <b-button size="sm" @click="submitEmptyCart"  variant='' class="mr-2">
-            Очистить корзину
-        </b-button>
+  <div v-if="items.length !== 0" class="container">
+    <b-button
+      size="sm"
+      @click="submitEmptyCart"
+      variant=""
+      class="mr-2 cart__button"
+    >
+      Очистить корзину
+    </b-button>
+    <!-- <div>
+      <b-table fixed small hover :items="items" :fields="fields">
+        <template #cell(price)="row">
+          {{ row.item.quantity * row.item.price }} ₽
+        </template>
+        <template #cell(delete)="row">
+          <b-button
+            size="sm"
+            variant="danger"
+            class="mr-2"
+            @click="removeDish(row.index)"
+          >
+            Удалить
+          </b-button>
+        </template>
+        <template #cell(quantity)="row">
+          <b-form-spinbutton
+            style="width: 8rem"
+            size="sm"
+            v-model="row.item.quantity"
+            min="1"
+            max="10"
+          ></b-form-spinbutton>
+        </template>
+      </b-table>
+    </div> -->
+    <!-- <b-button
+      size="sm"
+      variant="success"
+      class="mr-2"
+      @click="submitCreateOrder"
+    >
+      Оформить Заказ {{ totalSum }} ₽
+    </b-button> -->
 
-        <b-table fixed small hover :items='items' :fields='fields'>
-           
-            <template #cell(price)="row">
-                {{row.item.quantity * row.item.price}} ₽
-            </template>
-            <template #cell(delete)="row">
-                <b-button size="sm" variant='danger' class="mr-2" @click="removeDish(row.index)">
-                        Удалить
-                </b-button>
-            </template>
-            <template #cell(quantity)="row">
-                <b-form-spinbutton style="width: 8rem" size="sm" v-model="row.item.quantity" min="1" max="10" ></b-form-spinbutton>
-            </template>
-        </b-table>
-        <b-button size="sm" variant='success' class="mr-2" @click="submitCreateOrder">
-            Оформить Заказ {{totalSum}} ₽
-        </b-button>
-        <ModalConfirm :modalTitle="modalTitle" @submit-action='onSubmit'/>
+    <div class="cart_address">
+      <AddressCard :addresses="customer.addresses" />
+    </div>
 
+    <div>
+      <DishesList
+        :dishes="items"
+        :discountSum="discountSum"
+        @remove-dish="removeDish"
+        @edit-dishes="resetPromocode"
+      />
     </div>
-    <div v-else>
-        <h1>Корзина пуста</h1>
+
+    <div class="cart_promocode">
+      <div class="cart_promocode__input">
+        <b-form-input
+          size="sm"
+          v-model="promocode.value"
+          placeholder="Введите промокод"
+        />
+      </div>
+      <div class="cart_promocode__button">
+        <b-button
+          size="sm"
+          class="mr-2"
+          style="min-width: 95px"
+          :variant="promocodeVariantButton"
+          @click="checkOffer"
+          >{{
+            promocode.isActive === true ? "Отменить" : "Применить"
+          }}</b-button
+        >
+      </div>
+      <div class="cart_promocode__big_button">
+        <b-button size="sm" variant="success" @click="submitCreateOrder">
+          Оформить Заказ
+        </b-button>
+      </div>
     </div>
+    <ModalConfirm :modalTitle="modalTitle" @submit-action="onSubmit" />
+    <b-modal
+      id="alert-promocode"
+      hide-footer
+      size="sm"
+      title="Ошибка!"
+      header-bg-variant="warning"
+    >
+      {{ alertMessage }}
+    </b-modal>
+  </div>
+  <div v-else>
+    <h1>Корзина пуста</h1>
+  </div>
 </template>
 
 <script>
-    import { mapState, mapActions } from 'vuex'    
-    import pizzaApi from '@/api/pizzaApi'
-    
-    import ModalConfirm from '@/components/ModalConfirm.vue'
+import { mapState, mapActions } from "vuex";
+import pizzaApi from "@/api/pizzaApi";
+
+import ModalConfirm from "@/components/ModalConfirm.vue";
+import DishesList from "@/components/DishesList.vue";
+import AddressCard from "@/components/AddressCard.vue";
 export default {
-    name: 'ShoppingCart',
-    components: {
-        ModalConfirm
+  name: "ShoppingCart",
+  components: {
+    ModalConfirm,
+    DishesList,
+    AddressCard,
+  },
+  data() {
+    return {
+      //   fields: [
+      //     {
+      //       key: "productName",
+      //       label: "",
+      //     },
+      //     {
+      //       key: "quantity",
+      //       label: "",
+      //     },
+      //     {
+      //       key: "price",
+      //       label: "",
+      //     },
+      //     {
+      //       key: "delete",
+      //       label: "",
+      //     },
+      //   ],
+      modalTitle: "",
+      modalAction: "",
+      variant: "primary",
+      discountSum: 0,
+      alertMessage: "",
+      promocode: {
+        isActive: false,
+        value: "",
+      },
+    };
+  },
+  computed: {
+    ...mapState({
+      //   items: "cart",
+      //   items: (state) => state.cartM.cart,
+      // promocode: "promocode",
+      customer: "customer",
+    }),
+    ...mapState("cartM", {
+      //   items: (state) => state.cart,
+      items: "cart",
+    }),
+    totalSum() {
+      let sum = 0;
+      for (let dish of this.items) {
+        sum += dish.price * dish.quantity;
+      }
+      return sum;
     },
-    data() {
-        return {
-            fields:[
-                {
-                    key: 'productName',
-                    label: '',
-                },
-                {
-                    key: 'quantity',
-                    label: ''
-                },
-                {
-                    key: 'price',
-                    label: ''
-                },
-                {
-                    key:'delete',
-                    label: ''
-                }
-                
-            ],
-            modalTitle: '',
-            modalAction: ''
-        }
+    // promocodeVariantButton() {
+    //   if (this.promocode.isActive === true) {
+    //     return "primary";
+    //   } else {
+    //     return "success";
+    //   }
+    // },
+    promocodeVariantButton() {
+      if (this.promocode.isActive === true) {
+        return "primary";
+      } else {
+        return "success";
+      }
     },
-    computed: {
-        ...mapState({
-            items:'cart'
-        }),
-        totalSum(){
-            let sum = 0
-            for(let dish of this.items){
+  },
+  methods: {
+    ...mapActions("cartM", ["removeDishVX", "emptyCartVX", "getCustomer"]),
+    ...mapActions(["getCustomer", "setPromocode"]),
+    submitCreateOrder() {
+      this.modalTitle = "Подтвердить заказ?";
+      this.modalAction = "create";
+      this.$bvModal.show("modal-confirm");
+    },
+    submitEmptyCart() {
+      this.modalTitle = "Очистить корзину?";
+      this.modalAction = "empty";
+      this.$bvModal.show("modal-confirm");
+    },
+    removeDish(Id) {
+      console.log(Id);
+      this.removeDishVX(Id);
+    },
+    onSubmit() {
+      if (this.modalAction === "create") {
+        this.createOrder();
+      }
+      this.emptyCart();
+    },
+    createOrder() {
+      const order = pizzaApi.order.createOrder(this.items);
+      console.log(order);
+    },
+    emptyCart() {
+      this.emptyCartVX();
+    },
 
-                sum += dish.price * dish.quantity
-            }
-            return sum
-        }
-    },
-    methods:{
-        ...mapActions([
-        'removeDishVX',
-        'emptyCartVX'
-        ]),
-        submitCreateOrder(){
-            this.modalTitle = "Подтвердить заказ?"
-            this.modalAction = 'create'
-            this.$bvModal.show('modal-confirm')
-        },
-        submitEmptyCart(){
-            this.modalTitle = "Очистить корзину?"
-            this.modalAction = 'empty'
-            this.$bvModal.show('modal-confirm')
-        },
-        removeDish(Id){
-            console.log(Id)
-            this.removeDishVX(Id)
-        },
-        onSubmit(){
-            if(this.modalAction === 'create'){
-                this.createOrder()
-            }
-            this.emptyCart()
-        },
-        createOrder(){
-            const order =  pizzaApi.order.createOrder(this.items)
-            console.log(order)
-        },
-        emptyCart(){
-            this.emptyCartVX()
-        },
+    async checkOffer() {
+      if (this.promocode.isActive === true) {
+        this.resetPromocode();
+        return;
+      }
+      if (this.promocode.value === "") {
+        return;
+      }
+      console.log("список блюд");
+      console.log(this.items);
+      console.log("");
+      let result = await pizzaApi.specialOffer.checkComplianceSpecialOffer(
+        this.items,
+        this.promocode.value
+      );
+      if (result.status !== 200) {
+        this.alertMessage = result.data;
+        this.$bvModal.show("alert-promocode");
+        return;
+      }
+      console.log(result);
+      this.promocode.isActive = true;
+      this.discountSum = result.data.discountSum;
+      this.setPromocode(this.promocode.value);
 
-        
-        test(){
-            console.log(this.items)
-        }
+      // if (result.status !== 200) {
+      //   return result.data;
+      // }
+      // return result.data;
     },
-    mounted(){
-    }
-}
+
+    // resetPromocode() {
+    //   if (this.discountSum !== 0) {
+    //     this.discountSum = 0;
+    //     this.promocode.isActive = false;
+    //     this.setPromocode("");
+    //   }
+    // },
+    resetPromocode() {
+      if (this.promocode.isActive === true) {
+        this.discountSum = 0;
+        this.promocode.isActive = false;
+        this.setPromocode("");
+      }
+    },
+  },
+  mounted() {
+    this.getCustomer(1);
+  },
+};
 </script>
