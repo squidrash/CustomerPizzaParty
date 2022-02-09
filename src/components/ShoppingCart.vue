@@ -151,7 +151,7 @@ export default {
       if (this.modalAction === "create") {
         this.createOrder();
       }
-      // this.emptyCart();
+      this.emptyCart();
     },
     createOrder() {
       // const order = pizzaApi.order.createOrder(this.items);
