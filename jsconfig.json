@@ -1,0 +1,26 @@
+// {
+//   "compilerOptions": {
+//     "baseUrl": ".",
+//     "paths": {
+//       "$src": ["src"],
+//       "$src/*": ["src/*"]
+//     }
+//   },
+//   "include": [
+//     "src/**/*.d.ts",
+//     "src/**/*.js",
+//     "src/**/*.vue",
+//     "src/*.js",
+//     "src/*.vue"
+//   ],
+//   "exclude": ["node_modules", "**/node_modules", "dist"]
+// }
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "components/*": ["src/components/*"]
+    }
+  },
+  "exclude": ["node_modules", "**/node_modules", "dist"]
+}

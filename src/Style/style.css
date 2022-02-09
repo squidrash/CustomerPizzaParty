@@ -1,145 +1,259 @@
+.container {
+  margin-left: 10%;
+  width: 90%;
+  justify-content: center;
+}
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
 
 .sidenav {
-    width: 150px;
-    float: right;
-    margin-right: 30px;
-    /* background: #eee; */
-    position: sticky;
-    top: 0;
-    z-index: 100;
+  width: 150px;
+  float: right;
+  margin-right: 30px;
+  /* background: #eee; */
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 .main {
-    margin-left: 140px;
-    margin-right: 200px; 
-    font-size: 20px;
-    /* background: #eee; */
+  margin-left: 140px;
+  margin-right: 200px;
+  font-size: 16px;
+  /* background: #eee; */
 }
 .table-size-l {
-    margin-left: 15%;
-    width: 80%;
+  margin-left: 15%;
+  width: 80%;
 }
 .table-size-s {
-    margin-left: 15%;
-    width: 65%;
+  margin-left: 15%;
+  width: 65%;
 }
 
 .dishes-block {
-    background-color: chocolate;
-    margin: 10px;
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+  background-color: chocolate;
+  margin: 10px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 .dish-card {
-    width: 320px;
-    height: 420px;
-    background: #007E3E; /* Цвет фона */
-    color: rgb(8, 8, 8); /* Цвет текста */
-    padding: 10px; /* Поля вокруг текста */
-    -moz-border-radius: 5px; /* Для Firefox 3 */
-    -webkit-border-radius: 5px; /* Для Safari 4 и Chrome */
-    border-radius: 5px; /* Для современных браузеров */
-    margin: 10px;
+  width: 320px;
+  height: 420px;
+  background: #007e3e; /* Цвет фона */
+  color: rgb(8, 8, 8); /* Цвет текста */
+  padding: 10px; /* Поля вокруг текста */
+  -moz-border-radius: 5px; /* Для Firefox 3 */
+  -webkit-border-radius: 5px; /* Для Safari 4 и Chrome */
+  border-radius: 5px; /* Для современных браузеров */
+  margin: 10px;
 }
 .special-offer-block {
-    background-color: bisque;
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    max-height: 175px;
-    margin: 10px;
+  background-color: bisque;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  max-height: 175px;
+  margin: 10px;
 }
 .special-offer-block::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
-.categories-block{
-    background-color: bisque;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: auto; 
-    max-height: 175px;
-    margin: 10px;
+.categories-block {
+  background-color: bisque;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  max-height: 175px;
+  margin: 10px;
 }
 .categories-block::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
-.special-offer-card{
-    width: 240px;
-    height: 135px;
-    margin: 20px;
-    background: #007E3E;
-    border-radius: 10px;
-    border: 1px solid black;
-    font-size: 14px;
+.special-offer-card {
+  width: 240px;
+  height: 135px;
+  margin: 20px;
+  background: #007e3e;
+  border-radius: 10px;
+  border: 1px solid black;
+  font-size: 14px;
 }
-.inline-block
-{
-    display: inline-block;
-}
-
-.order-card-block{
-    /* background-color: rgb(111, 76, 30); */
-    max-width: 700px;
-    margin-bottom: 20px;
-    /* margin: 20px; */
-    padding: 10px;
-    /* box-shadow: 0 0 5px; */
-}
-.order-card-head{
-    background: #ffffff;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
-    color: #000000;
-    text-align: left;
-    margin-bottom: 2px;
-    box-shadow: 0 0 5px;
-    
-}
-.order-card-dishes{
-    background: #ffffff;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    color:#2c3e50;
-    box-shadow: 0 0 5px;
-    /* text-align: left; */
-}
-#order-card p{
-    margin-top: 3px;
-    margin-bottom: 3px;
-    padding-left: 40px;
-    font-size: 16px;
-}
-table{
-    width: 100%;
-    table-layout:fixed;
-    border-collapse: collapse;
-    border:0;
-}
-tr td{
-    padding: 10px;
-    font-size: 18px;
-}
-.first-column{
-    text-align: left; 
-    padding-left: 40px
-}
-.price-column{
-    text-align: right; 
-    width: 130px; 
-    padding-right: 40px;
-}
-.quantity-column{
-    text-align: right; 
-    width: 100px; 
+.inline-block {
+  display: inline-block;
 }
 
+.order_card {
+  /* background-color: rgb(111, 76, 30); */
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+  margin-bottom: 20px;
+  /* margin: 20px; */
+  padding: 10px;
+  box-shadow: 0 0 5px;
+}
+.order_card__head {
+  background: #ffffff;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  color: #000000;
+  text-align: left;
+  margin-bottom: 2px;
+  box-shadow: 0 0 5px;
+}
+.order_card__head_item {
+  padding: 10px 40px 0px 40px;
+}
+.order_card__head_item:last-child {
+  padding: 10px 40px;
+}
 
+.order-card-dishes {
+  background: #ffffff;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: #2c3e50;
+  box-shadow: 0 0 5px;
+  /* text-align: left; */
+}
+.order_card__dishes_list {
+  margin-bottom: 2px;
+  box-shadow: 0 0 5px;
+}
+.order_card__sum {
+  box-shadow: 0 0 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+/* 
+#order-card p {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  padding-left: 40px;
+  font-size: 16px;
+}
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: 0;
+}
+tr td {
+  padding: 10px;
+  font-size: 18px;
+}
+.first-column {
+  text-align: left;
+  padding-left: 40px;
+}
+.price-column {
+  text-align: right;
+  width: 130px;
+  padding-right: 40px;
+}
+.quantity-column {
+  text-align: right;
+  width: 100px;
+} */
 
+/* ================================================== */
+.dishes_list {
+  margin-top: 3px;
+  box-shadow: 0 0 5px;
+}
 
-
-
-
+.dishes_list__row {
+  display: flex;
+  padding: 20px 40px 0px 40px;
+  width: 100%;
+}
+.dishes_list__row:last-child {
+  padding: 20px 40px 20px 40px;
+}
+.dishes_list__row_sum {
+  padding: 20px 40px 20px 40px;
+}
+.dishes_list__column {
+  padding: 0px 10px 0px 0px;
+}
+.dishes_list__column_name {
+  flex: 1 1 70%;
+}
+.dishes_list__column_quantity {
+  flex: 0 0 130px;
+}
+.dishes_list__column_price {
+  flex: 1 1 30%;
+}
+.dishes_list__column_remove {
+  flex: 0 0 36px;
+  padding: 0px;
+}
+.dishes_list__column_total {
+  flex: 1 1 70%;
+}
+.dishes_list__column_sum {
+  flex: 1 1 30%;
+}
+.dishes_list__item {
+  flex: 1 1;
+  text-align: right;
+}
+.dishes_list__item_name {
+  text-align: left;
+}
+/* ============================= */
+.cart__button {
+  margin: 10px;
+}
+/* ============================= */
+.cart_promocode {
+  display: flex;
+  flex-wrap: wrap;
+  /* padding: 10px; */
+  padding: 10px 40px 10px 40px;
+  margin-top: 3px;
+  box-shadow: 0 0 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.cart_promocode__input {
+  flex: 1 1 70%;
+  padding: 0px 0px 10px 0px;
+}
+.cart_promocode__button {
+  flex: 1 1 30%;
+  padding: 0px 0px 10px 0px;
+}
+.cart_promocode__big_button {
+  flex: 1 0 100%;
+}
+/* ======== */
+.cart_address {
+  display: flex;
+  /* padding: 10px; */
+  padding: 10px 40px 10px 40px;
+  margin-top: 3px;
+  box-shadow: 0 0 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  text-align: left;
+  /* flex-direction: row; */
+}
+.cart_address__button {
+  width: 150px;
+  margin-top: 10px;
+}
+.cart_address__p {
+  border-bottom: 1px solid #fff;
+}
+.cart_address__p:hover {
+  border-bottom: 1px solid #28a745;
+}
