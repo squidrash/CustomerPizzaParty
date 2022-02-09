@@ -10,7 +10,11 @@
     </b-button>
 
     <div class="cart_address">
-      <AddressCard :addresses="customer.addresses" />
+      <AddressCard
+        :addresses="customer.addresses"
+        @address-selected="isBtnDisabled = false"
+        @address-canceled="isBtnDisabled = true"
+      />
     </div>
 
     <div>
@@ -35,7 +39,7 @@
           size="sm"
           class="mr-2"
           style="min-width: 95px"
-          :variant="promocodeVariantButton"
+          :variant="promocodeVariantBtn"
           @click="checkOffer"
           >{{
             promocode.isActive === true ? "Отменить" : "Применить"
@@ -43,7 +47,12 @@
         >
       </div>
       <div class="cart_promocode__big_button">
-        <b-button size="sm" variant="success" @click="submitCreateOrder">
+        <b-button
+          :disabled="isBtnDisabled"
+          size="sm"
+          :variant="createOrderVarionBtn"
+          @click="submitCreateOrder"
+        >
           Оформить Заказ
         </b-button>
       </div>
@@ -80,24 +89,6 @@ export default {
   },
   data() {
     return {
-      //   fields: [
-      //     {
-      //       key: "productName",
-      //       label: "",
-      //     },
-      //     {
-      //       key: "quantity",
-      //       label: "",
-      //     },
-      //     {
-      //       key: "price",
-      //       label: "",
-      //     },
-      //     {
-      //       key: "delete",
-      //       label: "",
-      //     },
-      //   ],
       modalTitle: "",
       modalAction: "",
       variant: "primary",
@@ -107,6 +98,7 @@ export default {
         isActive: false,
         value: "",
       },
+      isBtnDisabled: true,
     };
   },
   computed: {
@@ -123,9 +115,16 @@ export default {
       }
       return sum;
     },
-    promocodeVariantButton() {
+    promocodeVariantBtn() {
       if (this.promocode.isActive === true) {
         return "primary";
+      } else {
+        return "success";
+      }
+    },
+    createOrderVarionBtn() {
+      if (this.isBtnDisabled === true) {
+        return "";
       } else {
         return "success";
       }
@@ -133,7 +132,7 @@ export default {
   },
   methods: {
     ...mapActions("cartM", ["removeDishVX", "emptyCartVX", "getCustomer"]),
-    ...mapActions(["getCustomer", "setPromocode"]),
+    ...mapActions(["getCustomer", "setPromocode", "createOrderVX"]),
     submitCreateOrder() {
       this.modalTitle = "Подтвердить заказ?";
       this.modalAction = "create";
@@ -152,11 +151,12 @@ export default {
       if (this.modalAction === "create") {
         this.createOrder();
       }
-      this.emptyCart();
+      // this.emptyCart();
     },
     createOrder() {
-      const order = pizzaApi.order.createOrder(this.items);
-      console.log(order);
+      // const order = pizzaApi.order.createOrder(this.items);
+      // console.log(order);
+      this.createOrderVX();
     },
     emptyCart() {
       this.emptyCartVX();

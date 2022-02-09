@@ -30,9 +30,22 @@ export default {
         });
     },
   },
+  // order: {
+  //   async createOrder(order) {
+  //     return await axios.post(url + "order/create/", order);
+  //   },
+  // },
   order: {
     async createOrder(order) {
-      return await axios.post(url + "order/create/", order);
+      let request = `?customerId=${order.customerId}`;
+      if (order.promocode !== "") {
+        request += `&promoCode=${order.promocode}`;
+      }
+      if (order.addressId !== 0) {
+        request += `&addressId=${order.addressId}`;
+      }
+
+      return await axios.post(url + `order/create${request}`, order.dishes);
     },
   },
   customer: {

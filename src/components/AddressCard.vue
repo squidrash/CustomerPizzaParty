@@ -5,8 +5,12 @@
       <div>
         <b-form-group>
           <b-form-radio-group id="radio-group-2" v-model="isDelivery">
-            <b-form-radio value="false">Заберу из ресторана</b-form-radio>
-            <b-form-radio value="true">По адресу</b-form-radio>
+            <b-form-radio @change="eventSelect" value="false"
+              >Заберу из ресторана</b-form-radio
+            >
+            <b-form-radio @change="eventCancel" value="true"
+              >По адресу</b-form-radio
+            >
           </b-form-radio-group>
         </b-form-group>
       </div>
@@ -58,14 +62,6 @@
     </div>
 
     <div v-else>
-      <!-- <p class="cart_address__p" @click="resetAddress">
-        г. {{ deliveryAddress.city }}, ул. {{ deliveryAddress.street }}, д.
-        {{ deliveryAddress.numberOfBuild
-        }}<span v-if="deliveryAddress.numberOfEntrance !== undefined"
-          >, под. {{ deliveryAddress.numberOfEntrance }}, кв.
-          {{ deliveryAddress.apartment }}</span
-        >
-      </p> -->
       <p class="cart_address__p" @click="resetAddress">
         г. {{ selectedAddress.city }}, ул. {{ selectedAddress.street }}, д.
         {{ selectedAddress.numberOfBuild
@@ -137,10 +133,18 @@ export default {
       this.selectedAddress = address;
       this.addressСonfirmed = true;
       this.setDeliveryAddress(address.id);
+      this.eventSelect();
     },
     resetAddress() {
       this.addressСonfirmed = false;
       this.setDeliveryAddress(0);
+      this.eventCancel();
+    },
+    eventSelect() {
+      this.$emit("address-selected");
+    },
+    eventCancel() {
+      this.$emit("address-canceled");
     },
   },
 };

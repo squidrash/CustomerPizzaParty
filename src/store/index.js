@@ -47,6 +47,16 @@ export default new Vuex.Store({
       const getC = await pizzaApi.customer.getCustomerWithInfo(id);
       commit("getCustomer", getC);
     },
+
+    async createOrderVX({ state }) {
+      let order = {};
+      order.dishes = state.cartM.cart;
+      order.customerId = state.customer.id;
+      order.promocode = state.promocode;
+      order.addressId = state.deliveryAddress;
+      const or = pizzaApi.order.createOrder(order);
+      console.log(or);
+    },
   },
   mutations: {
     updateField,
@@ -79,7 +89,7 @@ export default new Vuex.Store({
   },
   plugins: [
     createPersistedState({
-      paths: ["selectedAddress", "promocode", "cartM.cart"],
+      paths: ["selectedAddress", "cartM.cart"],
     }),
   ],
 });
