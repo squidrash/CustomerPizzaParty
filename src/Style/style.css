@@ -1,8 +1,17 @@
-.container {
-  margin-left: 10%;
-  width: 90%;
-  justify-content: center;
+.wrapper {
+  padding: 0 88px;
+  width: 100%;
+  height: 100%;
 }
+.main {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  margin-top: 30px;
+  padding: 20px;
+}
+
 .break {
   flex-basis: 100%;
   height: 0;
@@ -21,16 +30,23 @@ a:hover {
 }
 /* ========================= */
 
+.navbar_block {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
 .navbar__row {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
+
   border-bottom: 1px solid #e3e4e6;
   /* background-color: #28a745; */
   color: #000;
   height: 55px;
 }
 .navbar__column {
+  background-color: #fff;
   border-left: 1px solid #e3e4e6;
   border-right: 1px solid #e3e4e6;
   width: 100px;
@@ -40,6 +56,7 @@ a:hover {
   font-size: 20px;
 }
 .navbar__column_menu {
+  /* background-color: #fff; */
   flex: 1 0 auto;
   border: 0px;
 }
@@ -52,6 +69,7 @@ a:hover {
 .navbar__item_title,
 /* .router-link-active, */
 .router-link-exact-active {
+  border-left: 1px solid #e3e4e6;
   background-color: #fff;
   color: #000;
 }
@@ -124,61 +142,61 @@ a:hover {
   top: 0;
   z-index: 100;
 }
-.main {
-  margin-left: 140px;
-  margin-right: 200px;
-  font-size: 16px;
-  /* background: #eee; */
-}
-.table-size-l {
+
+/* .table-size-l {
   margin-left: 15%;
   width: 80%;
 }
 .table-size-s {
   margin-left: 15%;
   width: 65%;
-}
+} */
 
 .dishes-block {
-  background-color: chocolate;
-  margin: 10px;
+  /* background-color: chocolate; */
+  /* margin: 10px; */
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
 }
-.dish-card {
-  width: 320px;
-  height: 420px;
-  background: #007e3e; /* Цвет фона */
+
+.dish_card {
+  width: 300px;
+  height: 400px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 5px;
+
+  /* background: #007e3e; */
   color: rgb(8, 8, 8); /* Цвет текста */
-  padding: 10px; /* Поля вокруг текста */
+  /* padding: 10px;  */
   -moz-border-radius: 5px; /* Для Firefox 3 */
   -webkit-border-radius: 5px; /* Для Safari 4 и Chrome */
   border-radius: 5px; /* Для современных браузеров */
-  margin: 10px;
+  /* margin: 10px; */
 }
 .special-offer-block {
-  background-color: bisque;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
   max-height: 175px;
-  margin: 10px;
+  margin: 10px 0;
 }
 .special-offer-block::-webkit-scrollbar {
   display: none;
 }
 .categories-block {
-  background-color: bisque;
+  /* background-color: bisque; */
+  background-color: #fff;
   position: sticky;
-  top: 0;
-  z-index: 100;
+  top: 55px;
+  z-index: 1;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   overflow-x: auto;
   max-height: 175px;
-  margin: 10px;
+  margin: 10px 0;
 }
 .categories-block::-webkit-scrollbar {
   display: none;
@@ -186,27 +204,30 @@ a:hover {
 .special-offer-card {
   width: 240px;
   height: 135px;
-  margin: 20px;
-  background: #007e3e;
+  margin-right: 20px;
+  overflow: hidden;
+  /* background: #007e3e; */
   border-radius: 10px;
   border: 1px solid black;
   font-size: 14px;
 }
-.inline-block {
-  display: inline-block;
-}
 
 .order_card {
+  justify-content: center;
   /* background-color: rgb(111, 76, 30); */
   display: flex;
+  width: 700px;
   flex-direction: column;
   max-width: 700px;
   min-width: 400px;
   margin-bottom: 20px;
   /* margin: 20px; */
   padding: 10px;
-  box-shadow: 0 0 5px;
+  /* box-shadow: 0 0 5px; */
 }
+/* .order_card:first-child {
+  margin-top: 30px;
+} */
 .order_card__head {
   background: #ffffff;
   border-top-right-radius: 5px;
@@ -318,6 +339,10 @@ tr td {
   text-align: left;
 }
 /* ============================= */
+.cart {
+  max-width: 700px;
+  flex: 1 1 700px;
+}
 .cart__button {
   margin: 10px;
 }
@@ -333,12 +358,13 @@ tr td {
   border-bottom-right-radius: 5px;
 }
 .cart_promocode__input {
-  flex: 1 1 70%;
+  flex: 1 1 80%;
   padding: 0px 0px 10px 0px;
 }
 .cart_promocode__button {
-  flex: 1 1 30%;
+  flex: 1 1 20%;
   padding: 0px 0px 10px 0px;
+  text-align: right;
 }
 .cart_promocode__big_button {
   flex: 1 0 100%;
@@ -366,3 +392,8 @@ tr td {
   border-bottom: 1px solid #28a745;
 }
 /* ===================================== */
+.customer_info {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}

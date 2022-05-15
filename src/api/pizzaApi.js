@@ -4,14 +4,20 @@ const url = "https://localhost:5001/api/";
 export default {
   menu: {
     async getMenu() {
-      return await axios.get(url + "menu/fullmenu/");
+      let request = "?IsActive=true";
+      return await axios.get(url + `menu/fullmenu/${request}`);
+    },
+    async getImage(name) {
+      return await axios.get(
+        `https://localhost:5001/api/DishImage/getDishImage?name=${name}`
+      );
     },
   },
-  dishCategories: {
-    async getCategories() {
-      return await axios.get(url + "dishcategory/getCategories");
-    },
-  },
+  // dishCategories: {
+  //   async getCategories() {
+  //     return await axios.get(url + "dishcategory/getCategories");
+  //   },
+  // },
   specialOffer: {
     async getOffers() {
       return await axios.get(url + "specialOffer/all");

@@ -1,27 +1,20 @@
 <template>
-    <div id='nav'>
-        <SideBar/>
-        <router-view/>
-    </div>
+  <div class="wrapper">
+    <router-view />
+  </div>
 </template>
 
 <script>
-    
-    import SideBar from '@/components/SideBar.vue'
-    import {mapActions } from 'vuex'
-    
-    export default {
-        name:'UserProfile',
-        components: {
-            SideBar
-        },
-        methods:{
-        ...mapActions([
-        'getCustomer'
-        ])
-        },
-        mounted() {
-            this.getCustomer(1)
-        }
-    }
+import { mapActions } from "vuex";
+
+export default {
+  name: "UserProfile",
+  components: {},
+  methods: {
+    ...mapActions(["getCustomer"]),
+  },
+  mounted() {
+    this.getCustomer(1);
+  },
+};
 </script>

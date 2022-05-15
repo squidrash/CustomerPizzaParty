@@ -1,5 +1,5 @@
 <template>
-  <div class="main order_card">
+  <div class="order_card">
     <div class="order_card__head">
       <div class="order_card__head_item">
         {{ order.createTime | orderTime }}

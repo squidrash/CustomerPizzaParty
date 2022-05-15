@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="special-offer-block">
-      <div v-for="offer in offers" :key="offer.id">
-        <special-offer-card :specialOffer="offer" />
+      <div v-for="offer in offers" :key="offer.id" style="padding:10px">
+        <SpecialOfferCard :specialOfferProp="offer" />
       </div>
     </div>
 
@@ -32,7 +32,7 @@
         {{ category.categoryName }}
       </h1>
 
-      <dish-card
+      <DishCard
         v-for="dish in category.dishes"
         :key="dish.id"
         :dish="dish"
@@ -40,17 +40,17 @@
       />
     </div>
 
-    <div>
-      <add-to-cart-form :selectDish="currentDish" @add-to-cart="addToCart" />
-    </div>
+    <AddToCartForm :selectDish="currentDish" @add-to-cart="addToCart" />
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from "vuex";
-import DishCard from "@/components/DishCard.vue";
-import SpecialOfferCard from "@/components/SpecialOfferCard.vue";
-import AddToCartForm from "@/components/AddToCartForm.vue";
+import DishCard from "@/components/DishCard2.vue";
+// import SpecialOfferCard from "@/components/SpecialOfferCard.vue";
+import SpecialOfferCard from "@/components/SpecialOfferCard2.vue";
+
+import AddToCartForm from "@/components/AddToCartForm2.vue";
 
 export default {
   name: "MenuTable",

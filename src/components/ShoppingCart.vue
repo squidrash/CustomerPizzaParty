@@ -1,75 +1,77 @@
 <template>
-  <div v-if="items.length !== 0" class="container">
-    <b-button
-      size="sm"
-      @click="submitEmptyCart"
-      variant=""
-      class="mr-2 cart__button"
-    >
-      Очистить корзину
-    </b-button>
+  <div class="main">
+    <div v-if="cart.length !== 0" class="cart">
+      <b-button
+        size="sm"
+        @click="submitEmptyCart"
+        variant=""
+        class="mr-2 cart__button"
+      >
+        Очистить корзину
+      </b-button>
 
-    <div class="cart_address">
-      <AddressCard
-        :addresses="customer.addresses"
-        @address-selected="isBtnDisabled = false"
-        @address-canceled="isBtnDisabled = true"
-      />
-    </div>
-
-    <div>
-      <DishesList
-        :dishes="items"
-        :discountSum="discountSum"
-        @remove-dish="removeDish"
-        @edit-dishes="resetPromocode"
-      />
-    </div>
-
-    <div class="cart_promocode">
-      <div class="cart_promocode__input">
-        <b-form-input
-          size="sm"
-          v-model="promocode.value"
-          placeholder="Введите промокод"
+      <div class="cart_address">
+        <AddressCard
+          :addresses="customer.addresses"
+          @address-selected="isBtnDisabled = false"
+          @address-canceled="isBtnDisabled = true"
         />
       </div>
-      <div class="cart_promocode__button">
-        <b-button
-          size="sm"
-          class="mr-2"
-          style="min-width: 95px"
-          :variant="promocodeVariantBtn"
-          @click="checkOffer"
-          >{{
-            promocode.isActive === true ? "Отменить" : "Применить"
-          }}</b-button
-        >
+
+      <div>
+        <DishesList
+          :dishes="cart"
+          :discountSum="discountSum"
+          @remove-dish="removeDish"
+          @edit-dishes="resetPromocode"
+        />
       </div>
-      <div class="cart_promocode__big_button">
-        <b-button
-          :disabled="isBtnDisabled"
-          size="sm"
-          :variant="createOrderVarionBtn"
-          @click="submitCreateOrder"
-        >
-          Оформить Заказ
-        </b-button>
+
+      <div class="cart_promocode">
+        <div class="cart_promocode__input">
+          <b-form-input
+            size="sm"
+            v-model="promocode.value"
+            placeholder="Введите промокод"
+          />
+        </div>
+        <div class="cart_promocode__button">
+          <b-button
+            size="sm"
+            class="mr-2"
+            style="min-width: 95px"
+            :variant="promocodeVariantBtn"
+            @click="checkOffer"
+            >{{
+              promocode.isActive === true ? "Отменить" : "Применить"
+            }}</b-button
+          >
+        </div>
+        <div class="cart_promocode__big_button">
+          <b-button
+            :disabled="isBtnDisabled"
+            size="sm"
+            :variant="createOrderVarionBtn"
+            @click="submitCreateOrder"
+          >
+            Оформить Заказ
+          </b-button>
+        </div>
       </div>
+      <ModalConfirm :modalTitle="modalTitle" @submit-action="onSubmit" />
+      <b-modal
+        id="alert-promocode"
+        hide-footer
+        size="sm"
+        title="Ошибка!"
+        header-bg-variant="warning"
+      >
+        {{ alertMessage }}
+      </b-modal>
     </div>
-    <ModalConfirm :modalTitle="modalTitle" @submit-action="onSubmit" />
-    <b-modal
-      id="alert-promocode"
-      hide-footer
-      size="sm"
-      title="Ошибка!"
-      header-bg-variant="warning"
-    >
-      {{ alertMessage }}
-    </b-modal>
-  </div>
-  <div v-else>
-    <h1>Корзина пуста</h1>
+    <div v-else>
+      <h1>Корзина пуста</h1>
+    </div>
   </div>
 </template>
 
@@ -106,11 +108,11 @@ export default {
       customer: "customer",
     }),
     ...mapState("cartM", {
-      items: "cart",
+      cart: "cart",
     }),
     totalSum() {
       let sum = 0;
-      for (let dish of this.items) {
+      for (let dish of this.cart) {
         sum += dish.price * dish.quantity;
       }
       return sum;
@@ -154,7 +156,7 @@ export default {
       this.emptyCart();
     },
     createOrder() {
-      // const order = pizzaApi.order.createOrder(this.items);
+      // const order = pizzaApi.order.createOrder(this.cart);
       // console.log(order);
       this.createOrderVX();
     },
@@ -171,10 +173,10 @@ export default {
         return;
       }
       console.log("список блюд");
-      console.log(this.items);
+      console.log(this.cart);
       console.log("");
       let result = await pizzaApi.specialOffer.checkComplianceSpecialOffer(
-        this.items,
+        this.cart,
         this.promocode.value
       );
       if (result.status !== 200) {

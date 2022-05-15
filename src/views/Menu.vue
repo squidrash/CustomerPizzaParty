@@ -1,16 +1,16 @@
 <template>
-    <div>
-        <MenuTable/>
-    </div>
+  <div class="wrapper">
+    <MenuTable />
+  </div>
 </template>
 
 <script>
-    import MenuTable from '@/components/MenuTable.vue'
+import MenuTable from "@/components/MenuTable.vue";
 
-    export default {
-        name: 'Menu',
-        components: {
-            MenuTable
-        }
-    }
+export default {
+  name: "Menu",
+  components: {
+    MenuTable,
+  },
+};
 </script>

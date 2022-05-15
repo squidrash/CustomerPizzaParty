@@ -15,7 +15,7 @@
         </b-form-group>
       </div>
       <div v-if="isDelivery !== 'false'">
-        <div class="">
+        <div>
           <b-form-select v-model="selectedAddress">
             <b-form-select-option :value="null" disabled>
               Выберите адрес
